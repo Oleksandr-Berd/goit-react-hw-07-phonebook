@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { getContacts, getError, getIsLoading } from 'Redux/selectors';
 import { getStatusFilter } from 'Redux/selectors';
 import { useEffect } from 'react';
-import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'Redux/operations';
 import { fetchContacts } from 'Redux/operations';
@@ -14,7 +13,6 @@ const ContactList = () => {
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getError);
   const contactsArray = contacts.items;
-  console.log(contactsArray);
   const getVisibleContacts = () => {
     if (filters !== '') {
       return contactsArray.filter(contact =>
@@ -27,6 +25,7 @@ const ContactList = () => {
   const dispatch = useDispatch();
 
   const onDeleteContact = evt => {
+    // console.log(evt.id);
     dispatch(deleteContact(evt));
   };
   const visibleContacts = getVisibleContacts(contactsArray, filters);
@@ -36,8 +35,8 @@ const ContactList = () => {
 
   return (
     <ul className={css.contactList}>
-      {visibleContacts.map(({ name, phone }) => (
-        <li className={css.contacts__item} key={nanoid()}>
+      {visibleContacts.map(({ name, phone, id }) => (
+        <li className={css.contacts__item} key={id}>
           <p className={css.contacts__name}>{name}</p>
           <p className={css.contacts__number}>{phone}</p>
           <button

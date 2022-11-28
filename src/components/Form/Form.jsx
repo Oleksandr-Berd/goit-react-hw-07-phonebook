@@ -28,7 +28,7 @@ export default function Form() {
   const handleSubmit = evt => {
     evt.preventDefault();
 
-    dispatch(addContact(name, number));
+    dispatch(addContact({ name, number, id: nanoid() }));
 
     setName('');
     setNumber('');

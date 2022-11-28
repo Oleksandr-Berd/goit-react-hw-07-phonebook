@@ -23,12 +23,15 @@ const contactsSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.items = action.payload;
+      console.log(state.items[0].name);
     },
     [fetchContacts.rejected]: handleRejected,
     [addContact.pending]: handlePending,
     [addContact.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
+      // console.log(action.payload);
+      // return [...state.items, action.payload];
       state.items.push(action.payload);
     },
     [deleteContact.pending]: handlePending,
@@ -36,7 +39,7 @@ const contactsSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       const index = state.items.findIndex(
-        task => task.id === action.payload.id
+        contact => contact.id === action.payload.id
       );
       state.items.splice(index, 1);
     },
