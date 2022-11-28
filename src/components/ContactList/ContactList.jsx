@@ -34,6 +34,7 @@ const ContactList = () => {
 
   return (
     <ul className={css.contactList}>
+      {isLoading && !error && <p>Request in progress...</p>}
       {visibleContacts.map(({ name, phone, id }) => (
         <li className={css.contacts__item} key={id}>
           <p className={css.contacts__name}>{name}</p>
