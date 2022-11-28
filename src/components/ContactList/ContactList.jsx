@@ -25,7 +25,6 @@ const ContactList = () => {
   const dispatch = useDispatch();
 
   const onDeleteContact = evt => {
-    // console.log(evt.id);
     dispatch(deleteContact(evt));
   };
   const visibleContacts = getVisibleContacts(contactsArray, filters);
@@ -42,7 +41,7 @@ const ContactList = () => {
           <button
             type="button"
             className={css.delete__btn}
-            onClick={() => onDeleteContact(name)}
+            onClick={() => onDeleteContact(id)}
           >
             Delete
           </button>
